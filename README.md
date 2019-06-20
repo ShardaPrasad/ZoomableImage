@@ -4,7 +4,7 @@ This library provides an async image slider using SDWebImage dependency.
 
 <b>How to use :
 
-<b>*Swift
+<b>*Swift-5
 
 #Import Both files and Use blow code.
 
