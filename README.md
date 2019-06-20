@@ -6,6 +6,8 @@ This library provides an async image slider using SDWebImage.
 
 <b>*Swift
 
+#Import Both files and Use blow code.
+
 <i>let viewController = SliderPagerViewController(images: images, currentIndex: 0, placeHolderImage: UIImage(named: ""))
 
 self.present(viewController, animated: true, completion: nil)</i>
