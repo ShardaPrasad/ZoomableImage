@@ -2,8 +2,10 @@
 Zoomable Image with page controller.
 This library provides an async image slider using SDWebImage.
 
-How to use :
+<b>How to use :
 
-let viewController = SliderPagerViewController(images: images, currentIndex: 0, placeHolderImage: UIImage(named: ""))
-self.present(viewController, animated: true, completion: nil)
+<b>*Swift
+
+<i>let viewController = SliderPagerViewController(images: images, currentIndex: 0, placeHolderImage: UIImage(named: ""))
+self.present(viewController, animated: true, completion: nil)</i>
 
