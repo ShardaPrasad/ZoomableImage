@@ -13,7 +13,7 @@ class SliderPagerViewController: UIPageViewController {
     var backGroundImage: UIImage?
     var imagesURL = [String]()
     var currentIndex: Int?
-    let clossButton = UIButton(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
+    let crossButton = UIButton(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
 
     
     init() {
@@ -53,14 +53,12 @@ class SliderPagerViewController: UIPageViewController {
         super.viewWillAppear(animated)
         
         self.isHidden = true
-        //UIApplication.shared.isStatusBarHidden = true
     }
     
     
     override public func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
          self.isHidden = false
-        //UIApplication.shared.isStatusBarHidden = false
     }
     
     func basicSetUp() {
@@ -68,10 +66,9 @@ class SliderPagerViewController: UIPageViewController {
         self.view.backgroundColor = UIColor.white
         
         
-        // 1
         if let viewController = getZoomedPhotoViewController(currentIndex ?? 0) {
             let viewControllers = [viewController]
-            // 2
+            
             setViewControllers(viewControllers,
                                direction: .forward,
                                animated: false,
@@ -85,26 +82,18 @@ class SliderPagerViewController: UIPageViewController {
     {
         let bundle = Bundle(for: self.classForCoder)
         let image = UIImage(named: "close", in: bundle, compatibleWith: nil)
-        clossButton.setBackgroundImage(image, for: .normal)
-        clossButton.addTarget(self, action: #selector(clossButtonTapped), for: .touchUpInside)
+        crossButton.setBackgroundImage(image, for: .normal)
+        crossButton.addTarget(self, action: #selector(crossButtonTapped), for: .touchUpInside)
         
-        //self.view.addSubview(imageIndexLabel)
-        self.view.addSubview(clossButton)
-       // self.view.bringSubview(toFront: imageIndexLabel)
-        self.view.bringSubviewToFront(clossButton)
+        self.view.addSubview(crossButton)
+        self.view.bringSubviewToFront(crossButton)
         
-        clossButton.translatesAutoresizingMaskIntoConstraints = false
-       // imageIndexLabel.translatesAutoresizingMaskIntoConstraints = false
+        crossButton.translatesAutoresizingMaskIntoConstraints = false
+        let crossButtonLeadingConstraint = NSLayoutConstraint(item: crossButton, attribute: .leading, relatedBy: .equal, toItem: self.view, attribute: .leading, multiplier: 1, constant: 8)
+        let crossButtonTopConstraint = NSLayoutConstraint(item: crossButton, attribute: .top, relatedBy: .equal, toItem: self.topLayoutGuide, attribute: .bottom, multiplier: 1, constant: 8)
+        let crossButtonWidthConstraint = NSLayoutConstraint(item: crossButton, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .width, multiplier: 1, constant: 30)
+        let crossButtonHeightConstraint = NSLayoutConstraint(item: crossButton, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1, constant: 30)
         
-       // let labelTrailingConstraint = NSLayoutConstraint(item: imageIndexLabel, attribute: .trailing, relatedBy: .equal, toItem: self.view, attribute: .trailing, multiplier: 1, constant: -8)
-       // let labelBottomConstraint = NSLayoutConstraint(item: imageIndexLabel, attribute: .bottom, relatedBy: .equal, toItem: self.bottomLayoutGuide, attribute: .top, multiplier: 1, constant: -8)
-        
-        let crossButtonLeadingConstraint = NSLayoutConstraint(item: clossButton, attribute: .leading, relatedBy: .equal, toItem: self.view, attribute: .leading, multiplier: 1, constant: 8)
-        let crossButtonTopConstraint = NSLayoutConstraint(item: clossButton, attribute: .top, relatedBy: .equal, toItem: self.topLayoutGuide, attribute: .bottom, multiplier: 1, constant: 8)
-        let crossButtonWidthConstraint = NSLayoutConstraint(item: clossButton, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .width, multiplier: 1, constant: 30)
-        let crossButtonHeightConstraint = NSLayoutConstraint(item: clossButton, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1, constant: 30)
-        
-       // self.view.addConstraints([labelTrailingConstraint, labelBottomConstraint, clossButtonLeadingConstraint, clossButtonTopConstraint, clossButtonWidthConstraint, clossButtonHeightConstraint])
         self.view.addConstraints([crossButtonLeadingConstraint, crossButtonTopConstraint, crossButtonWidthConstraint, crossButtonHeightConstraint])
     }
     
@@ -125,7 +114,7 @@ class SliderPagerViewController: UIPageViewController {
     
     
     
-    @objc func clossButtonTapped()
+    @objc func crossButtonTapped()
     {
         self.dismiss(animated: true, completion: nil)
     }
@@ -134,7 +123,7 @@ class SliderPagerViewController: UIPageViewController {
 
 //MARK: implementation of UIPageViewControllerDataSource
 extension SliderPagerViewController: UIPageViewControllerDataSource {
-    // 1
+   
     public func pageViewController(_ pageViewController: UIPageViewController,
                                    viewControllerBefore viewController: UIViewController) -> UIViewController? {
         
@@ -147,7 +136,7 @@ extension SliderPagerViewController: UIPageViewControllerDataSource {
         return nil
     }
     
-    // 2
+    
     public func pageViewController(_ pageViewController: UIPageViewController,
                                    viewControllerAfter viewController: UIViewController) -> UIViewController? {
         
@@ -160,7 +149,7 @@ extension SliderPagerViewController: UIPageViewControllerDataSource {
         return nil
     }
     
-    // MARK: UIPageControl
+    
     public func presentationCount(for pageViewController: UIPageViewController) -> Int {
         return 0
     }
